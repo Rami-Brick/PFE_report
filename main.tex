@@ -1,0 +1,82 @@
+\documentclass[12pt,a4paper]{report}
+
+% ==============================
+% Packages
+% ==============================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx} % Times New Roman font
+\usepackage[english]{babel} % <--- Changed from french to english
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{pdfpages} % <--- Needed for including PDF cover
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float} 
+\usepackage[dvipsnames]{xcolor}
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{adjustbox}
+\usepackage{caption}
+
+
+% ==============================
+% Page setup
+% ==============================
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+% ==============================
+% Document begins
+% ==============================
+\begin{document}
+
+% ----------- Page de garde (imported from PDF) -----------
+\includepdf[pages={1}]{Page Garde Rapport Stage Front.pdf}
+
+% ----------- Page 1 (imported from PDF) -----------
+\includepdf[pages={3}]{stamp.pdf}
+
+% ----------- Validation page (formulaire) -----------
+\input{pages/validation.tex}
+
+% ----------- Dédicace -----------
+\input{pages/dedicace.tex}
+
+% ----------- Remerciements -----------
+\input{pages/remerciements.tex}
+
+% ----------- Résumé / Abstract -----------
+\input{pages/resume.tex}
+
+% ----------- Table of contents -----------
+\tableofcontents
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+
+% ----------- Introduction générale -----------
+\input{chapters/introduction.tex}
+
+% ----------- Chapitres -----------
+\input{chapters/ch1_cadre_general.tex}
+\input{chapters/ch2_etat_de_l'art.tex}
+\input{chapters/ch3_besoins.tex}
+\input{chapters/ch4_Sprint1.tex}
+\input{chapters/ch5_Sprint2.tex}
+\input{chapters/ch6_Sprint3.tex}
+\input{chapters/ch7_Sprint4.tex}
+\input{chapters/ch8_conclusion.tex}
+                          
+% ----------- Bibliographie -----------
+\input{pages/bibliographie.tex}
+
+% ----------- last page (imported from PDF) -----------
+\includepdf[pages={1}]{Page Garde Rapport Stage Back.pdf}
+
+\end{document}
