@@ -1,0 +1,104 @@
+\chapter{Project Overview}
+
+\section{Introduction}
+This chapter begins with an overview of the organization that hosted our final-year internship, providing insight into its positioning and main areas of activity.
+
+It then presents the general problem that motivated the initiation of this project, examining the current state of existing practices while highlighting their strengths and shortcomings. This preliminary analysis helps to clearly define the objectives to be achieved and the essential needs to be addressed.
+
+Finally, the chapter outlines the methodology adopted to structure our approach, ensuring rigor, efficiency, and consistency throughout the project’s implementation.
+
+\section{Host Company Presentation}
+
+\textbf{FinGenesis}, represented by its logo in Figure~\ref{fig:fingenesis_logo}, is a Singapore-based company specializing in AI-driven trading systems. Founded in 2019, the company applies advanced artificial intelligence and deep learning techniques to financial markets, focusing primarily on price prediction and automated trading signal generation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/FG_logo.png} 
+    \caption{FinGenesis Logo}
+    \label{fig:fingenesis_logo}
+\end{figure}
+
+FinGenesis distinguishes itself through a research-intensive approach to market prediction. Unlike traditional statistical models that rely on rigid algorithms, the company develops AI systems that learn from market patterns and adapt to changing conditions. Their technology stack includes deep learning architectures, reinforcement learning, convolutional networks, and transformer models—similar in sophistication to large language models like ChatGPT, but specifically designed for financial time-series analysis.
+
+\subsection*{Core Product Offerings}
+
+FinGenesis organizes its AI capabilities into distinct product lines:
+
+\begin{itemize}
+    \item \textbf{Assist}: Short-term price prediction models that forecast market movements in the near term, helping traders anticipate price changes.
+    
+    \item \textbf{Advance}: Signal generation systems that produce actionable buy/sell recommendations based on detected market patterns.
+    
+    \item \textbf{Augment/Exceed}: Advanced portfolio management and risk control systems that provide comprehensive trading strategy optimization.
+\end{itemize}
+
+\subsection*{Technology and Approach}
+
+The company's AI infrastructure processes real-time market data across multiple instruments, with particular focus on XAUUSD (Gold/USD). Models operate across various timeframes—from 1-minute to 15-minute intervals—with prediction horizons ranging from 30 minutes to several hours.
+
+FinGenesis emphasizes an "AI + human" philosophy: their systems assist traders rather than fully automating decisions. This approach combines machine intelligence with human expertise, allowing traders to leverage AI insights while maintaining strategic control.
+
+The company's technical advantages include:
+
+\begin{itemize}
+    \item \textbf{Continuous model updating}: Regular retraining and validation to prevent overfitting and maintain accuracy.
+    \item \textbf{Speed}: Analysis and prediction generation 10-20 times faster than traditional methods.
+    \item \textbf{Robustness}: Stress-testing under various market conditions to ensure reliability.
+\end{itemize}
+
+\subsection*{Infrastructure and Operations}
+
+FinGenesis operates a cloud-native infrastructure on AWS, utilizing:
+
+\begin{itemize}
+    \item Kubernetes for container orchestration
+    \item GitLab for version control and CI/CD pipelines
+    \item Automated deployment systems for continuous model updates
+    \item Prometheus and Grafana for monitoring
+\end{itemize}
+
+The company maintains a lean team of approximately 10 specialists, including data scientists, machine learning engineers, and DevOps professionals. This structure enables rapid iteration and maintains the flexibility required in dynamic financial markets.
+
+With 15+ production models deployed and continuously monitored, FinGenesis combines technical sophistication with practical trading applications. The company's mission is clear: use real intelligence—not just algorithms—to optimize trading decisions and deliver reliable market predictions.
+\newpage
+\section{Problem Statement}
+
+In the context of AI-driven algorithmic trading, managing and automating infrastructure efficiently is a critical operational challenge. FinGenesis's engineering team faced significant obstacles in maintaining visibility and control over their complex, distributed infrastructure.
+
+The primary problems identified were:
+
+\textbf{Lack of Centralization}: Infrastructure monitoring and control tools were scattered across multiple platforms. Engineers had to navigate between Grafana for system metrics, GitLab for repository and pipeline management, AWS Console for cloud resources, and manual communication channels for coordination. This fragmentation created information silos and prevented a holistic view of system health.
+
+\textbf{Manual and Time-Consuming Processes}: Routine infrastructure operations required repetitive manual steps. Checking deployment status, triggering CI/CD pipelines, and verifying model performance metrics all involved context switching and sequential actions across different tools. These manual processes increased workload, reduced productivity, and introduced the risk of human error—particularly critical in time-sensitive trading operations where delays can have financial consequences.
+
+\textbf{Limited Visibility and Collaboration}: Internal engineering staff, stakeholders, and potential clients lacked a unified interface for accessing infrastructure data. Data scientists needed quick insights into model performance, DevOps engineers required deployment status information, and management needed high-level system health overviews—but each had to piece together information from disparate sources. This limited transparency hindered collaboration and slowed decision-making.
+
+\textbf{Scalability Challenges}: As FinGenesis's infrastructure grew—adding more repositories, deploying additional models, and expanding monitoring requirements—the complexity of managing multiple disconnected systems increased exponentially. The existing approach did not scale effectively, and response times degraded as the number of managed components grew (evidenced by GitLab data loading taking over 60 seconds for 40+ repositories).
+
+The \textbf{Infrastructure Command Center} was designed to address all these challenges by providing a unified, performance-optimized platform that centralizes infrastructure management, automates routine operations, and delivers actionable insights across monitoring, deployment, and MLOps domains.
+
+\newpage
+\section{Study of Existing Solutions}
+
+\subsection{Solutions Currently Used by the Company}
+
+Before the implementation of the Infrastructure Command Center project, \textit{FinGenesis} relied on conventional infrastructure management methods, primarily based on established third-party tools and manual processes. While functional, these mechanisms presented several notable limitations that hindered the fluidity and efficiency of infrastructure operations.
+
+\begin{itemize}
+    \item \textbf{Fragmented monitoring systems} : Existing tools like Grafana and AWS Console only provided visibility into specific aspects of the infrastructure. System metrics were isolated from deployment status, requiring engineers to manually correlate information across multiple platforms. This gap resulted in incomplete understanding of overall system health, complicated troubleshooting, and increased the time needed to diagnose and resolve issues.
+    
+    \item \textbf{Manual and labor-intensive deployment management} : Each infrastructure operation whether deploying a new version, restarting a service, or merging code changes—required manual intervention through the GitLab web interface. This procedure was not only time-consuming but also prone to human error, such as triggering the wrong pipeline or missing critical deployment steps. Consequently, deployment processes became bottlenecks, losing reliability and slowing down release cycles.
+    
+    \item \textbf{Insufficient integration and accessibility} : To access infrastructure information or perform management tasks, team members often had to navigate between multiple platforms, each requiring specific permissions and technical knowledge. This disconnect between different tools fragmented the workflow and limited access to critical information. The direct consequence was reduced productivity and increased dependency on specific engineers with the necessary expertise and credentials.
+\end{itemize}
+
+\newpage
+
+
+\newpage
+\section{Conclusion}
+
+Ce chapitre a permis d’exposer le cadre global du projet, de présenter l’entreprise d’accueil ainsi que les insuffisances des solutions actuellement employées. Nous avons également détaillé la proposition innovante qu’apporte \textit{CodeScribe}, en justifiant le recours à une méthodologie Agile, enrichie par l’adoption du cadre Scrum pour encadrer le pilotage opérationnel.  
+
+Ces orientations méthodologiques constituent la pierre angulaire sur laquelle s’appuie la concrétisation de \textit{CodeScribe}, garantissant à la fois efficience, flexibilité et rigueur dans la réalisation. Le chapitre suivant se penchera sur l’analyse des besoins fonctionnels et non fonctionnels, tout en présentant les choix techniques et l’architecture retenue pour assurer la cohérence et la pérennité du projet.
+
