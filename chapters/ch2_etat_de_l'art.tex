@@ -1,0 +1,222 @@
+\chapter{State of the Art}
+
+\section{Introduction}
+The rapid evolution of cloud infrastructure and the growing complexity of distributed systems have fundamentally transformed how engineering teams manage and monitor their applications.
+
+In this chapter, we present the technological context of the Infrastructure Command Center, detailing the technical choices that support its functionality and presenting the logical and physical architectures that ensure its efficiency, speed, and reliability. We will demonstrate how each component—from the React frontend to the FastAPI backend and deployment infrastructure—cooperates to deliver a unified, accessible platform for infrastructure management.
+
+\section{Centralized Infrastructure Management}
+
+\subsection{The Evolution of Infrastructure Management}
+Historically, infrastructure management relied on disparate tools and manual processes, often resulting in fragmented visibility and operational inefficiencies. This approach presented numerous drawbacks: inconsistent monitoring, information silos, time-consuming manual operations, and difficulty coordinating across teams. The emergence of cloud-native architectures and modern DevOps practices has fundamentally transformed this process. Centralized infrastructure management now enables teams to consolidate monitoring, deployment control, and operational workflows into unified platforms.
+
+In practice, modern infrastructure management platforms integrate multiple data sources—system metrics, deployment pipelines, application health, and performance indicators—into cohesive dashboards. This integration allows teams to understand not just individual components, but the entire system's health and behavior. Centralization goes beyond simple data aggregation: it includes workflow automation, intelligent alerting, and visual representations that make complex infrastructure accessible to both technical and non-technical stakeholders.
+
+\subsection{Benefits of Centralization}
+Centralized infrastructure management delivers multiple advantages for engineering teams and organizations. First, it significantly reduces time spent on repetitive tasks and context switching, allowing engineers to focus on high-value activities like optimization, new feature development, and proactive problem-solving.
+
+Second, it improves operational consistency and reduces human error by automating routine operations and providing standardized interfaces for common tasks. Additionally, it facilitates knowledge sharing within teams and eases onboarding for new members by offering a clear, structured view of the entire infrastructure from day one.
+
+Finally, centralization aligns perfectly with Agile and DevOps methodologies by ensuring that infrastructure state, deployment status, and system health are always visible and up-to-date. It contributes to system observability and incident response, enabling teams to quickly identify and resolve issues through comprehensive, real-time visibility.
+
+\subsection{The Infrastructure Command Center's Position in the Ecosystem}
+The Infrastructure Command Center distinguishes itself through its ability to intelligently combine modern technologies with seamless integration across multiple infrastructure domains. It consolidates monitoring (Prometheus metrics), deployment management (GitLab CI/CD), workflow visualization (interactive diagrams), and ML model performance tracking into a single, accessible platform.
+
+Technically, the Infrastructure Command Center relies on a robust backend using Python and FastAPI to orchestrate API calls, manage data processing, and deliver fast, reliable responses. The frontend, built with React, ReactFlow, and Recharts, provides an intuitive, responsive interface perfectly suited to the needs of modern engineering teams.
+
+The platform's core strength lies in its ability to bridge multiple systems—GitLab repositories, Prometheus monitoring, AWS infrastructure, and MLOps metrics—through a unified interface. This approach ensures speed, accessibility, and comprehensive visibility without requiring users to navigate multiple tools or maintain separate access credentials.
+
+Thus, the Infrastructure Command Center does not simply display data: it transforms fragmented infrastructure information into a cohesive, actionable resource that respects professional standards and addresses the specific needs of modern engineering organizations. Its position in the ecosystem is unique, offering simultaneous performance, security, accessibility, and comprehensive integration, establishing a new standard for centralized infrastructure management.
+\clearpage
+
+\section{Frontend Technology Choices}
+
+Before defining the technologies selected for developing the \textbf{Infrastructure Command Center} frontend, it is essential to explore the various available options. The frontend needed to provide an intuitive, responsive interface capable of handling complex visualizations and real-time data updates. Among the frameworks considered, \textbf{React} emerged as the optimal choice due to its component-based architecture, strong ecosystem, and excellent performance for interactive applications.
+
+\subsection{React}
+\textbf{React} is a powerful and flexible JavaScript library designed for building user interfaces. Its component-based approach allows for modular, reusable code that simplifies maintenance and scalability. React's virtual DOM ensures efficient rendering, making it ideal for applications that require frequent updates and real-time data visualization. The use of React in the Infrastructure Command Center ensures a responsive, modern interface that can handle complex interactions while maintaining excellent performance.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/react_logo.png}
+%     \caption{React Logo}
+% \end{figure}
+
+\subsection{ReactFlow}
+\textbf{ReactFlow} is a specialized library for building interactive node-based diagrams and workflow visualizations. It provides the foundation for the Infrastructure Command Center's visual workflow representation, enabling users to see how services and components connect and interact. ReactFlow's flexibility allows for custom node types, edge routing, and interactive controls, making it perfect for visualizing complex infrastructure architectures in an accessible, intuitive way.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/reactflow_logo.png}
+%     \caption{ReactFlow Logo}
+% \end{figure}
+
+\subsection{Recharts}
+\textbf{Recharts} is a composable charting library built on React components. It provides a simple, declarative approach to creating responsive charts and data visualizations. In the Infrastructure Command Center, Recharts powers the MLOps monitoring dashboard, displaying model performance metrics, accuracy trends, and prediction quality across multiple timeframes. Its component-based design integrates seamlessly with React's architecture, ensuring consistent styling and behavior across the application.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/recharts_logo.png}
+%     \caption{Recharts Logo}
+% \end{figure}
+
+\subsection{Material Dashboard}
+\textbf{Material Dashboard} provides a comprehensive UI framework based on Material Design principles. It offers pre-built components, layouts, and styling that ensure a professional, consistent user experience throughout the application. The framework accelerates development by providing ready-to-use interface elements while maintaining flexibility for customization.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/material_ui_logo.png}
+%     \caption{Material Dashboard Logo}
+% \end{figure}
+
+\subsection{Conclusion on Frontend Technology Choices}
+The technologies selected for the \textbf{Infrastructure Command Center} frontend were carefully chosen to ensure native integration, optimal performance, and long-term maintainability. Each component contributes to a seamless development experience, combining usability, efficiency, and scalability. The combination of React, ReactFlow, Recharts, and Material Dashboard constitutes a coherent and powerful stack that meets both the functional and technical requirements of the project.
+\clearpage
+
+\section{Backend Technology Choices}
+
+The backend constitutes the core orchestration layer of the Infrastructure Command Center. Before defining the selected technologies, it is essential to consider the available options and choose those offering the performance, robustness, and compatibility necessary for a modern platform integrating multiple APIs and real-time data processing.
+
+\subsection{Python}
+\textbf{Python} is a flexible and robust language with a rich ecosystem of libraries for API integration, data processing, and system automation. Its use in the Infrastructure Command Center backend enables powerful tools for orchestrating GitLab API calls, processing Prometheus metrics, and managing complex data transformations. Python's readability and extensive community support make it ideal for building maintainable, scalable backend services.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/python_logo.png}
+%     \caption{Python Logo}
+% \end{figure}
+
+\subsection{FastAPI}
+\textbf{FastAPI} is a modern, high-performance web framework perfectly suited for building APIs and microservices. It offers concise syntax, automatic data validation through Pydantic models, and native support for asynchronous operations. FastAPI's performance characteristics and developer-friendly design make it ideal for handling multiple concurrent requests from the frontend while maintaining fast response times, even when orchestrating calls to external services like GitLab API and Prometheus.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=6cm]{images/fastapi_logo.png}
+%     \caption{FastAPI Logo}
+% \end{figure}
+
+\subsection{Pydantic}
+\textbf{Pydantic} provides data validation and settings management using Python type annotations. It ensures that data flowing through the backend is correctly structured and validated, preventing errors and improving code reliability. Pydantic's integration with FastAPI enables automatic request/response validation and clear API documentation, enhancing both development speed and application robustness.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/pydantic_logo.png}
+%     \caption{Pydantic Logo}
+% \end{figure}
+
+\subsection{Conclusion on Backend Technology Choices}
+The technologies selected for the \textbf{Infrastructure Command Center} backend were chosen to ensure performance, robustness, and maintainability. The combination of Python, FastAPI, and Pydantic constitutes a coherent infrastructure capable of efficiently managing API orchestration, data processing, and validation, while providing a solid foundation for future platform evolution.
+\clearpage
+
+\section{Infrastructure \& DevOps Technology Choices}
+
+The deployment and operational infrastructure of the Infrastructure Command Center requires technologies that ensure reliability, scalability, and automated delivery. The selected tools form a complete CI/CD pipeline and container orchestration system that enables consistent deployments and seamless updates.
+
+\subsection{Docker}
+\textbf{Docker} provides containerization technology that packages the application and its dependencies into portable, consistent units. Containers ensure that the Infrastructure Command Center runs identically across development, testing, and production environments, eliminating configuration inconsistencies and deployment issues. Docker's lightweight architecture and efficient resource usage make it ideal for cloud-native applications.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/docker_logo.png}
+%     \caption{Docker Logo}
+% \end{figure}
+
+\subsection{Kubernetes}
+\textbf{Kubernetes} orchestrates containerized applications at scale, managing deployment, scaling, and operation of application containers across clusters of hosts. It provides automated rollouts and rollbacks, self-healing capabilities, and load balancing. For the Infrastructure Command Center, Kubernetes ensures high availability, efficient resource utilization, and simplified management of the application lifecycle in production environments.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=6cm]{images/kubernetes_logo.png}
+%     \caption{Kubernetes Logo}
+% \end{figure}
+
+\subsection{GitLab CI/CD}
+\textbf{GitLab} provides integrated continuous integration and continuous deployment capabilities. Its CI/CD pipelines automate testing, building, and deployment processes, ensuring that code changes are automatically validated and deployed to production environments. GitLab's unified platform combines version control, issue tracking, and deployment automation, streamlining the entire development workflow.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/gitlab_logo.png}
+%     \caption{GitLab Logo}
+% \end{figure}
+
+\subsection{Conclusion on Infrastructure Technology Choices}
+The technologies selected for the \textbf{Infrastructure Command Center} deployment infrastructure ensure automated, reliable, and scalable operations. The combination of Docker, Kubernetes, and GitLab CI/CD provides a complete DevOps ecosystem that supports rapid iteration, consistent deployments, and robust production operations.
+\clearpage
+
+\section{Integration \& API Technology Choices}
+
+The Infrastructure Command Center's value lies in its ability to integrate multiple external systems and data sources into a unified interface. This requires robust API clients and monitoring integrations that ensure reliable data retrieval and processing.
+
+\subsection{GitLab API v4}
+\textbf{GitLab API v4} provides programmatic access to GitLab's comprehensive feature set, including repository management, pipeline control, merge requests, and deployment operations. The Infrastructure Command Center leverages this API to retrieve repository information, trigger CI/CD pipelines, monitor deployment status, and manage infrastructure operations directly from the unified interface. The API's RESTful design and extensive documentation enable efficient integration and reliable data retrieval.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/gitlab_api_logo.png}
+%     \caption{GitLab API Logo}
+% \end{figure}
+
+\subsection{Prometheus}
+\textbf{Prometheus} is an open-source monitoring and alerting system designed for reliability and scalability. It collects time-series metrics from configured targets, stores them efficiently, and provides a powerful query language for data analysis. The Infrastructure Command Center integrates with Prometheus to retrieve system metrics, application performance data, and infrastructure health indicators, presenting them in accessible visualizations that enable quick identification of issues and trends.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=5cm]{images/prometheus_logo.png}
+%     \caption{Prometheus Logo}
+% \end{figure}
+
+\subsection{Conclusion on Integration Technology Choices}
+The integration technologies selected for the \textbf{Infrastructure Command Center} enable seamless connectivity with external systems and data sources. GitLab API v4 and Prometheus provide the foundation for consolidating repository management, deployment control, and system monitoring into a single, cohesive platform that delivers comprehensive infrastructure visibility.
+\clearpage
+
+\section{Application Architecture}
+
+The architecture of an application constitutes the backbone of its development. It defines the roles of different components, their interactions, and the data flows that ensure system coherence, performance, and maintainability. In the case of the \textbf{Infrastructure Command Center}, the architecture was designed to integrate a React frontend, a FastAPI backend, and multiple external services (GitLab, Prometheus, AWS), while maintaining performance and reliability. This section presents first the logical architecture, focused on functions and information flow, then the physical architecture, describing the concrete deployment of components and their interconnections.
+
+\subsection{Logical Architecture}
+
+The logical architecture of the \textbf{Infrastructure Command Center} illustrates the responsibilities of each component and how information flows through the system, without consideration of physical infrastructure. It is organized around three main entities, all orchestrated to transform raw infrastructure data into accessible, actionable information for users.
+
+\textbf{React Frontend}: The user interface serves as the entry point for all users. It provides interactive visualizations using ReactFlow for workflow diagrams and Recharts for metrics display. The frontend communicates with the backend via REST API calls, sending user requests and receiving processed data for display. Components are organized modularly, separating concerns between visualization, data management, and user interactions.
+
+\textbf{FastAPI Backend}: Acting as the central orchestrator, the backend receives requests from the frontend, validates data through Pydantic models, and orchestrates calls to external services. It manages authentication, caches frequently accessed data to improve performance, and transforms raw API responses into structured formats suitable for frontend consumption. The backend ensures consistency and reliability in all data exchanges.
+
+\textbf{External Services}: The platform integrates with multiple external systems. GitLab API v4 provides repository data, pipeline status, and deployment controls. Prometheus delivers system metrics and performance data. These services respond to backend requests and return data that is processed and forwarded to the frontend.
+
+This logical architecture ensures clear separation of responsibilities while enabling fast, efficient communication between components. Each stage—from API orchestration to data visualization—is optimized to provide a smooth user experience without compromising security or data consistency.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/logical_architecture.png}
+%     \caption{Logical Architecture Diagram of Infrastructure Command Center}
+%     \label{fig:logical_architecture}
+% \end{figure}
+
+\subsection{Physical Architecture}
+
+The physical architecture describes the concrete deployment of components and how they interact in the real environment. It highlights the role of servers, containers, and communication channels in the production deployment.
+
+\textbf{Client Layer}: User browsers access the React application through standard HTTPS connections. The frontend is served as static assets, ensuring fast load times and efficient content delivery.
+
+\textbf{Application Layer}: The FastAPI backend runs as containerized services within a Kubernetes cluster. Docker containers ensure consistent environments, while Kubernetes manages scaling, health checks, and service discovery. The backend exposes REST API endpoints that the frontend consumes.
+
+\textbf{Integration Layer}: The backend communicates with external services through their respective APIs. GitLab API calls retrieve repository and pipeline data. Prometheus queries fetch system metrics. These integrations are managed through configured service endpoints and authentication mechanisms.
+
+\textbf{Infrastructure Layer}: The entire application is deployed on AWS using Kubernetes (EKS) for orchestration. GitLab CI/CD pipelines automate the build and deployment process, pushing updated container images to AWS ECR and triggering Kubernetes rolling updates. Load balancers distribute traffic, and monitoring systems track application health.
+
+Data flows between layers are secured through HTTPS, with authentication tokens managing access to external services. This physical architecture enables reliable, scalable operations while maintaining security and performance standards.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/physical_architecture.png}
+%     \caption{Physical Architecture Diagram of Infrastructure Command Center}
+%     \label{fig:physical_architecture}
+% \end{figure}
+
+\subsection{Conclusion on Architectures}
+
+The logical and physical architectures of the \textbf{Infrastructure Command Center} demonstrate a robust and modular design. The logical architecture highlights responsibilities and information flows, ensuring clear, coherent organization from data retrieval to user presentation. The physical architecture describes the concrete infrastructure that implements this logic, ensuring efficient and secure communication between all components. Together, these perspectives provide a complete, structured view of the system, establishing the foundation for testing, optimization, and future evolution of the Infrastructure Command Center.
+\clearpage
+
+\section{Conclusion}
+This chapter presented the technical foundations of the Infrastructure Command Center. The technology choices—both frontend and backend—ensure a balance between performance, reliability, and maintainability, providing a robust and scalable environment. The architectural design demonstrates how components work together to deliver a unified infrastructure management platform. The next chapter will focus on requirements specification, detailing the functional and non-functional needs that guide the system's development.

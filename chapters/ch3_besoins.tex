@@ -7,36 +7,140 @@ The requirements specified here form the backbone of the system’s architecture
 \clearpage
 
 \section{Functional Requirements}
-Functional requirements capture the essential operations and behaviors that \textit{Infra App} must exhibit to fulfill its intended objectives. They define the system’s operational blueprint, detailing how users interact with and derive value from the platform. The subsections below articulate the core functionalities, emphasizing the integration of intuitive design, intelligent automation, and actionable insight.
 
-\subsection*{Dynamic Visual Workflows}
-At the heart of \textit{Infra App} lies an intelligent visual environment that empowers users to model and interpret infrastructure as dynamic, interactive workflows. This graphical representation transforms abstract architectural configurations into comprehensible visual structures, facilitating an immediate grasp of interdependencies and component relationships. By presenting complex infrastructures in a tangible, visually coherent manner, engineers can proactively identify potential bottlenecks, assess risks, and make strategic, informed decisions with heightened efficiency.
+Functional requirements define the specific features and capabilities the Infrastructure Command Center must provide. These requirements were organized around three major feature areas that address the core problems identified in Chapter 1.
 
-\subsection*{Control Panel Integration}
-The control panel serves as the central operational hub of \textit{Infra App}, seamlessly unifying disparate functionalities into a single interface. By embedding GitLab features within this environment, users can navigate repositories, execute deployments, restart services, and manage merge requests without the need to switch contexts. This consolidation of operations not only streamlines workflows but also replaces repetitive manual tasks with automated, reliable processes. The result is an acceleration of delivery cycles, enhanced team collaboration, and a notable reduction in operational friction.
+\subsection{Dynamic Visual Workflows}
 
-\subsection*{Machine Learning Metrics Monitoring}
-A critical dimension of \textit{Infra App} is the continuous monitoring of deployed machine learning models. Through interactive dashboards, engineers can observe key performance indicators in real-time, detecting deviations in accuracy or latency before they impact production. The system’s alerting mechanisms enable proactive intervention, ensuring sustained model reliability and operational consistency. By integrating this functionality, \textit{Infra App} transcends basic infrastructure management, positioning itself as an indispensable tool for maintaining the integrity and quality of AI-driven services.
+The platform must provide an interactive visual representation of FinGenesis's infrastructure components and their relationships.
 
-Together, these functionalities coalesce to define the operational essence of \textit{Infra App}, where visualization, control, and analytical insight converge into a unified, user-centered platform.
+\textbf{Requirements:}
+\begin{itemize}
+    \item Display infrastructure workflows as interactive node-based diagrams
+    \item Show connections between services, databases, and external systems
+    \item Enable users to zoom, pan, and navigate complex workflow structures
+    \item Update visualizations dynamically based on current infrastructure state
+    \item Provide clear labels and annotations for each component
+    \item Display real-time status indicators for each service 
+\end{itemize}
+
+\textbf{Purpose:} Help engineers quickly understand system architecture and dependencies, monitor service health at a glance, and enable faster troubleshooting by immediately identifying which components are experiencing issues.
+
+\subsection{Control Panel}
+
+The platform must provide a centralized interface for managing GitLab repositories and deployment operations.
+
+\textbf{Requirements:}
+\begin{itemize}
+    \item Display all accessible GitLab repositories in a unified view
+    \item Provide search and filtering capabilities (by name, status, deployment state)
+    \item Enable sorting by multiple criteria (last updated, pipeline status, repository name)
+    \item Allow users to trigger deployments directly from the interface
+    \item Support service restart operations without direct GitLab access
+    \item Provide merge request management capabilities
+    \item Display real-time pipeline status for each repository
+\end{itemize}
+
+\textbf{Purpose:} Reduce manual overhead, eliminate context switching between tools, and automate routine deployment operations.
+
+\subsection{ML Metrics Monitoring Section}
+
+The platform must display comprehensive performance metrics for deployed machine learning models.
+
+\textbf{Requirements:}
+\begin{itemize}
+    \item Visualize model accuracy trends across multiple timeframes (1-minute, 15-minute intervals)
+    \item Display prediction quality metrics (MAE, accuracy percentages)
+    \item Show performance data for different prediction types (High, Low, Close price predictions)
+    \item Support multiple prediction horizons (30 minutes to several hours ahead)
+    \item Provide rolling accuracy calculations for smooth trend analysis
+    \item Enable drift detection and anomaly identification
+    \item Display reference target lines for performance benchmarking
+    \item Support configurable time ranges (6 hours, 24 hours, 48 hours, 7 days)
+    \item Present current performance summaries with status indicators (healthy, warning, error)
+\end{itemize}
+
+\textbf{Purpose:} Enable data scientists and engineers to quickly identify model performance issues, detect drift early, and maintain prediction quality standards.
 \clearpage
 
 \section{Non-Functional Requirements}
-Non-functional requirements articulate the qualitative attributes that govern system behavior, ensuring that \textit{Infra App} is not only capable but also robust, efficient, and user-friendly. They describe the performance, reliability, scalability, and usability expectations that the platform must satisfy under varying conditions.
+Non-functional requirements define the quality attributes and constraints that the Infrastructure Command Center must satisfy. These requirements ensure the platform operates reliably, efficiently, and securely in production environments.
 
-\subsection*{Performance}
-Performance is a pivotal consideration. \textit{Infra App} is engineered to provide immediate responsiveness to user actions, delivering real-time updates without perceptible latency. Its architecture emphasizes fluidity and robustness, guaranteeing that high workloads do not compromise operational efficiency. By maintaining consistent responsiveness, the system ensures that users can interact seamlessly, supporting uninterrupted analytical and operational activities.
+\subsection{Performance}
 
-\subsection*{Reliability}
-Reliability ensures that \textit{Infra App} functions accurately and consistently, even in the presence of external dependencies. The platform maintains stable integrations with critical services such as GitLab, Prometheus, and AWS. Operational tasks—including deployments, synchronizations, and data retrievals—are executed without interruption, with recovery mechanisms in place to safeguard continuity and data integrity. This commitment to reliability fosters user confidence and supports mission-critical operations.
+The platform must deliver fast, responsive interactions to support real-time infrastructure management.
 
-\subsection*{Scalability}
-Scalability underpins the system’s ability to adapt to evolving organizational demands. Its modular design allows for seamless expansion, accommodating additional services or components without disrupting existing functionalities. As infrastructure complexity grows, \textit{Infra App} dynamically allocates resources, preserving performance and ensuring operational stability across diverse workloads and data volumes.
+\textbf{Requirements:}
+\begin{itemize}
+    \item Page load times must not exceed 3 seconds under normal network conditions
+    \item API responses for common operations (repository listing, metric retrieval) must complete within 2 seconds
+    \item Real-time data updates must refresh without noticeable delay or interface freezing
+    \item The interface must remain responsive during data loading operations
+    \item Chart rendering and visualization updates must complete within 1 second
+\end{itemize}
 
-\subsection*{Usability}
-Usability prioritizes intuitive design and accessibility. The platform’s interface is logically structured, incorporating clear visual cues to facilitate effortless navigation. Tasks can be performed efficiently without requiring extensive technical expertise, enhancing productivity and overall user satisfaction. By foregrounding user experience, \textit{Infra App} achieves both technical excellence and operational elegance.
+\textbf{Rationale:} Engineers need immediate feedback when managing infrastructure. Delays in displaying critical information or executing operations can impact decision-making and incident response times.
 
-These non-functional requirements reinforce the system’s robustness and operational excellence, establishing a dependable foundation for daily use.
+\subsection{Reliability}
+
+The platform must maintain stable operation and handle external service failures gracefully.
+
+\textbf{Requirements:}
+\begin{itemize}
+    \item System uptime must exceed 99\% during business hours
+    \item Integration with GitLab API must handle rate limits and temporary failures without crashing
+    \item Prometheus data retrieval must continue functioning even if individual metrics are unavailable
+    \item The platform must cache data appropriately to maintain functionality during brief service interruptions
+    \item Error states must be clearly communicated to users with actionable recovery steps
+\end{itemize}
+
+\textbf{Rationale:} Infrastructure management tools must be dependable. The platform serves as a critical operational interface, and failures would force engineers back to fragmented tools.
+
+\subsection{Scalability}
+
+The platform architecture must accommodate growth in infrastructure complexity and user base.
+
+\textbf{Requirements:}
+\begin{itemize}
+    \item Support monitoring of 50+ GitLab repositories without performance degradation
+    \item Handle concurrent access from 10+ users simultaneously
+    \item Process and display metrics for 15+ ML models across multiple timeframes
+    \item Backend architecture must support horizontal scaling through containerization
+    \item Database and caching strategies must scale with data volume growth
+\end{itemize}
+
+\textbf{Rationale:} FinGenesis's infrastructure continues to grow. The platform must scale alongside the organization without requiring fundamental architectural changes.
+
+\subsection{Usability}
+
+The platform must provide an intuitive interface accessible to both technical and non-technical users.
+
+\textbf{Requirements:}
+\begin{itemize}
+    \item New users must be able to navigate core features without training
+    \item Common operations (searching repositories, viewing metrics) must require minimal clicks
+    \item Visual design must follow established UI/UX patterns and conventions
+    \item Error messages must be clear and provide guidance for resolution
+    \item Interface must be consistent across all sections of the platform
+    \item Documentation and tooltips must be available for complex features
+\end{itemize}
+
+\textbf{Rationale:} The platform's value depends on adoption. If the interface is complex or confusing, users will revert to familiar tools, defeating the purpose of centralization.
+
+\subsection{Maintainability}
+
+The codebase must be organized to facilitate future development and bug fixes.
+
+\textbf{Requirements:}
+\begin{itemize}
+    \item Code must follow established style guides and conventions
+    \item Components must be modular and loosely coupled
+    \item API endpoints must be documented with clear request/response schemas
+    \item Deployment processes must be automated through CI/CD pipelines
+    \item Version control must track all changes with descriptive commit messages
+\end{itemize}
+
+\textbf{Rationale:} The platform will evolve over time. Clean, well-organized code ensures that future developers can understand, modify, and extend the system efficiently.
 \clearpage
 
 \section{Use Case Identification and Structuring}
