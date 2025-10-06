@@ -92,13 +92,136 @@ Before the implementation of the Infrastructure Command Center project, \textit{
     \item \textbf{Insufficient integration and accessibility} : To access infrastructure information or perform management tasks, team members often had to navigate between multiple platforms, each requiring specific permissions and technical knowledge. This disconnect between different tools fragmented the workflow and limited access to critical information. The direct consequence was reduced productivity and increased dependency on specific engineers with the necessary expertise and credentials.
 \end{itemize}
 
+\vspace{1cm}
+
+\subsection{Analysis of the Existing System}
+In-depth examination of the methods in place revealed several structural deficiencies that hindered operational efficiency and overall infrastructure quality:
+
+\begin{itemize}
+    \item \textbf{Limited visibility and transparency} : In the current context, critical infrastructure information such as deployment status, pipeline health, or model performance metrics—was scattered across disconnected platforms. The absence of a unified dashboard prevented stakeholders from obtaining a comprehensive overview, increasing the risk of delayed incident response and uninformed decision-making.
+    
+    \item \textbf{Scalability issues and performance degradation} : Due to the reliance on multiple separate tools and manual processes, managing infrastructure became increasingly complex as FinGenesis grew. When operations were performed across 40+ repositories, response times degraded significantly (GitLab data loading exceeded 60 seconds). These incidents forced teams to spend valuable time waiting for information or repeating tasks, considerably slowing operational cycles.
+    
+    \item \textbf{Poor user experience and limited accessibility} : Navigation across infrastructure management tools was dispersed and non-intuitive. Critical information was difficult to locate, connections between related services were often unclear, and presentation formats varied between platforms. This complexity increased the time needed to understand the overall infrastructure state and reduced accessibility, especially for non-technical stakeholders or new team members.
+    
+    \item \textbf{Lack of automation and workflow visualization} : The tools used did not provide automated orchestration of common tasks or visual representation of infrastructure workflows. The absence of clear standards for infrastructure operations resulted in inconsistent processes and limited the team's ability to efficiently leverage available automation capabilities.
+\end{itemize}
+
+\section{Proposed Solution}
+
+To address the limitations and inefficiencies of the existing infrastructure management approach, the \textbf{Infrastructure Command Center} (also referred to as \textbf{Infra App}) was developed as a comprehensive, centralized solution.
+
+The Infrastructure Command Center is a unified web application that consolidates monitoring, deployment control, and workflow automation into a single, accessible platform. Rather than requiring engineers and stakeholders to navigate between Grafana, AWS Console, GitLab, and manual communication channels, the platform provides one integrated dashboard where all critical infrastructure operations can be performed.
+
+\subsection{Core Capabilities}
+
+The solution delivers three primary functional areas:
+
+\textbf{Visual Workflow Representation}: The platform provides an interactive visualization of FinGenesis's infrastructure workflows, showing how services connect and interact. This visual approach replaces abstract documentation with clear, real-time diagrams that help both technical and non-technical users understand system architecture at a glance.
+
+\textbf{Repository and Deployment Management}: All GitLab repositories are accessible through a centralized control panel with advanced filtering, search, and sorting capabilities. Common operations—such as triggering deployments, restarting services, managing merge requests, and monitoring pipeline status—can be executed directly from the interface without switching contexts or requiring direct GitLab access.
+
+\textbf{MLOps Monitoring and Model Performance Tracking}: The platform integrates real-time model performance metrics, displaying accuracy trends, prediction quality, and drift detection across multiple timeframes and prediction horizons. This gives data scientists and engineers immediate visibility into model health without needing to query separate monitoring systems.
+
+\subsection{Design Philosophy}
+
+The Infrastructure Command Center was designed with two key principles:
+
+\textbf{Simplicity for all users}: The interface is intuitive enough for non-technical stakeholders—such as management or clients—to understand system status and access relevant information without requiring specialized training or deep technical knowledge.
+
+\textbf{Power for technical users}: Despite its accessible design, the platform provides engineers with comprehensive control over infrastructure operations, enabling them to perform complex tasks efficiently through streamlined workflows and automation.
+
+\subsection{Expected Benefits}
+
+The proposed solution aims to deliver measurable improvements across several operational dimensions:
+
+\begin{itemize}
+    \item \textbf{Reduced manual overhead}: Automation of routine tasks eliminates repetitive manual steps, freeing engineers to focus on higher-value work.
+    
+    \item \textbf{Improved collaboration}: A unified platform ensures all team members—regardless of technical background—have access to the same information, facilitating better communication and decision-making.
+    
+    \item \textbf{Decreased dependency on specialized staff}: By centralizing and simplifying infrastructure operations, the platform reduces bottlenecks caused by reliance on specific individuals with unique access or expertise.
+    
+    \item \textbf{Enhanced visibility and transparency}: Real-time dashboards and visual representations provide stakeholders with immediate insight into system health, deployment status, and model performance.
+    
+    \item \textbf{Scalability}: The centralized architecture is designed to handle growing infrastructure complexity without degrading performance or requiring proportional increases in manual effort.
+\end{itemize}
+
+By consolidating fragmented tools into one cohesive platform, the Infrastructure Command Center transforms infrastructure management from a complex, multi-tool process into a streamlined, accessible operation that scales with organizational growth.
 \newpage
+\section{Adopted Methodology}
 
+To ensure structured development and consistent progress throughout the six-month internship, the Infrastructure Command Center project was implemented using the \textbf{Agile methodology}, specifically following Scrum principles adapted to a single-developer context.
 
+\subsection{Agile Framework}
+
+Agile methodology emphasizes iterative development, continuous feedback, and adaptive planning. Rather than attempting to build the entire platform at once, the project was divided into \textbf{9 sprints}, each lasting approximately two weeks. This approach allowed for:
+
+\begin{itemize}
+    \item \textbf{Incremental delivery}: Each sprint produced working features that could be tested and validated immediately.
+    \item \textbf{Flexibility}: Requirements and priorities could be adjusted based on feedback and evolving organizational needs.
+    \item \textbf{Risk mitigation}: Problems were identified and resolved early in the development cycle rather than accumulating until project completion.
+    \item \textbf{Continuous improvement}: Lessons learned from each sprint informed planning and execution of subsequent iterations.
+\end{itemize}
+
+\subsection{Sprint Structure}
+
+Each two-week sprint followed a consistent pattern:
+
+\textbf{Sprint Planning}: At the beginning of each sprint, a planning session established the scope of work to be completed. Tasks were identified, prioritized, and broken down into manageable units with clear acceptance criteria. This planning ensured focused effort on high-priority features aligned with project goals.
+
+\textbf{Daily Standups}: Every day at 9:00 AM, a brief daily meeting was held to maintain momentum and alignment. These sessions covered three key questions:
+\begin{itemize}
+    \item What was accomplished yesterday?
+    \item What will be worked on today?
+    \item Are there any blockers or obstacles?
+\end{itemize}
+
+These daily check-ins ensured transparency, identified issues early, and maintained consistent communication with stakeholders.
+
+\textbf{Sprint Review}: At the end of each sprint, an in-person review meeting was conducted to demonstrate completed features. This session provided an opportunity to:
+\begin{itemize}
+    \item Present working functionality to stakeholders
+    \item Gather feedback on implemented features
+    \item Validate that sprint objectives were met
+    \item Identify any adjustments needed for future development
+\end{itemize}
+
+\textbf{Sprint Retrospective}: Following the review, a retrospective session analyzed what worked well during the sprint and what could be improved. This continuous learning process enhanced efficiency and quality in subsequent iterations.
+
+\subsection{Tools and Tracking}
+
+To support the Agile workflow, several organizational tools were employed:
+
+\textbf{Notion}: Served as the central project management platform, tracking:
+\begin{itemize}
+    \item Sprint backlogs and task assignments
+    \item Progress status for each feature (To Do, In Progress, Done)
+    \item Documentation and technical notes
+    \item Meeting notes and decisions
+\end{itemize}
+
+\textbf{GitLab}: Beyond code versioning, GitLab's issue tracking and merge request features supported task management and code review processes.
+
+\textbf{Communication Channels}: Regular communication with technical supervisors ensured alignment with organizational standards and technical requirements.
+
+\subsection{Adaptation to Solo Development}
+
+While traditional Scrum assumes team-based development, the methodology was adapted for individual work while maintaining its core benefits:
+
+\begin{itemize}
+    \item Daily standups became accountability check-ins with supervisors
+    \item Sprint reviews involved demonstration to stakeholders and gathering feedback
+    \item The iterative approach remained essential for managing complexity and maintaining focus
+    \item Clear sprint goals prevented scope creep and ensured steady progress
+\end{itemize}
+
+This structured yet flexible approach enabled consistent delivery of high-quality features across the nine sprints, ultimately producing a comprehensive platform that met all project objectives.
 \newpage
 \section{Conclusion}
 
-Ce chapitre a permis d’exposer le cadre global du projet, de présenter l’entreprise d’accueil ainsi que les insuffisances des solutions actuellement employées. Nous avons également détaillé la proposition innovante qu’apporte \textit{CodeScribe}, en justifiant le recours à une méthodologie Agile, enrichie par l’adoption du cadre Scrum pour encadrer le pilotage opérationnel.  
+\indent This chapter outlined the general framework of the project by introducing the host organization and identifying the main limitations of the existing infrastructure management practices. It also presented the innovative contribution of the Infrastructure Command Center, a unified and automated platform designed to streamline and optimize FinGenesis’s operational workflows.
 
-Ces orientations méthodologiques constituent la pierre angulaire sur laquelle s’appuie la concrétisation de \textit{CodeScribe}, garantissant à la fois efficience, flexibilité et rigueur dans la réalisation. Le chapitre suivant se penchera sur l’analyse des besoins fonctionnels et non fonctionnels, tout en présentant les choix techniques et l’architecture retenue pour assurer la cohérence et la pérennité du projet.
+In addition, the adoption of the Agile methodology, supported by the Scrum framework, provided a disciplined yet adaptable structure that ensured both methodological rigor and development efficiency. These methodological foundations serve as the cornerstone for the successful realization of the Infra App, ensuring coherence, maintainability, and long-term scalability.
 
+The next chapter will focus on the analysis of functional and non-functional requirements, as well as the technical and architectural decisions that guided the implementation of the solution.
