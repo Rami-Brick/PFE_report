@@ -201,12 +201,12 @@ The monitoring system is built using Recharts for visualization and processes mo
 
 The monitoring dashboard provides immediate visibility into model performance through summary cards and configurable views:
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{images/mlops_dashboard.png}
-%     \caption{ML Metrics Monitoring Dashboard}
-%     \label{fig:mlops_dashboard}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/mlops.png}
+    \caption{ML Metrics Monitoring Dashboard}
+    \label{fig:mlops_dashboard}
+\end{figure}
 
 \textbf{Summary Metrics:}
 
@@ -235,12 +235,12 @@ Users can customize their view through several control options:
 
 The accuracy chart visualizes how well models predict High, Low, and Close prices over time. Accuracy represents the percentage of predictions that correctly forecast price movements. The rolling accuracy calculation smooths out short-term volatility, revealing underlying performance trends that help identify gradual drift or sudden degradation.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{images/accuracy_trends_chart.png}
-%     \caption{Prediction Accuracy Trends with Rolling Window}
-%     \label{fig:accuracy_trends}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/accuracy.png}
+    \caption{Prediction Accuracy Trends with Rolling Window}
+    \label{fig:accuracy_trends}
+\end{figure}
 
 Three colored lines represent different prediction types:
 \begin{itemize}
@@ -253,23 +253,23 @@ Three colored lines represent different prediction types:
 
 The MAE (Mean Absolute Error) chart displays prediction error magnitude over time. MAE measures the average absolute difference between predicted and actual values, expressed as a percentage. Lower MAE values indicate more accurate predictions. This metric is particularly important because a model can have high accuracy (correct direction) but poor precision (large error magnitude).
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{images/mae_trends_chart.png}
-%     \caption{MAE Trends - Lower is Better}
-%     \label{fig:mae_trends}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/mae.png}
+    \caption{MAE Trends - Lower is Better}
+    \label{fig:mae_trends}
+\end{figure}
 
 \textbf{Performance Summary Cards:}
 
 Three detailed cards provide comprehensive metrics for each prediction type (High, Low, Close):
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{images/performance_cards.png}
-%     \caption{Current Performance Summary Cards}
-%     \label{fig:performance_cards}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/cards.png}
+    \caption{Current Performance Summary Cards}
+    \label{fig:performance_cards}
+\end{figure}
 
 Each card displays:
 \begin{itemize}
@@ -384,12 +384,12 @@ One of the most critical challenges encountered was severe performance degradati
 
 The performance bottleneck stemmed from the architecture's approach: for each repository, the system made separate API calls to fetch pipeline status, branch information, and merge request data. With 40 repositories requiring 4 API calls each, this resulted in 160 sequential requests. At an average API latency of 200 milliseconds per request, the total loading time reached 30-40 seconds completely unacceptable for a production dashboard.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{images/gitlab_performance_before.png}
-%     \caption{Before: Sequential API Calls Causing 30+ Second Load Times}
-%     \label{fig:gitlab_before}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/slow.png}
+    \caption{Before: Sequential API Calls Causing 30+ Second Load Times}
+    \label{fig:gitlab_before}
+\end{figure}
 
 \textbf{Solution: Asynchronous Processing and Intelligent Caching}
 
@@ -417,12 +417,12 @@ To eliminate redundant API calls and reduce load on GitLab's servers, a sophisti
 
 This architecture pattern separated data fetching from data serving. The background task handles all external API communication asynchronously, while user-facing API endpoints simply return pre-loaded cached data instantly.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{images/gitlab_performance_after.png}
-%     \caption{After: Async + Caching Resulting in Sub-50ms Response Times}
-%     \label{fig:gitlab_after}
-% \end{figure}
+\begin{figure}[H]*
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/fast.png}
+    \caption{After: Async + Caching Resulting in Sub-50ms Response Times}
+    \label{fig:gitlab_after}
+\end{figure}
 
 \textbf{Performance Results:}
 

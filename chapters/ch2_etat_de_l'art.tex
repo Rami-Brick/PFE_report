@@ -36,38 +36,38 @@ Before defining the technologies selected for developing the \textbf{Infrastruct
 \subsection{React}
 \textbf{React} is a powerful and flexible JavaScript library designed for building user interfaces. Its component-based approach allows for modular, reusable code that simplifies maintenance and scalability. React's virtual DOM ensures efficient rendering, making it ideal for applications that require frequent updates and real-time data visualization. The use of React in the Infrastructure Command Center ensures a responsive, modern interface that can handle complex interactions while maintaining excellent performance.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=5cm]{images/react_logo.png}
-%     \caption{React Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{images/react.png}
+    \caption{React Logo}
+\end{figure}
 
 \subsection{ReactFlow}
 \textbf{ReactFlow} is a specialized library for building interactive node-based diagrams and workflow visualizations. It provides the foundation for the Infrastructure Command Center's visual workflow representation, enabling users to see how services and components connect and interact. ReactFlow's flexibility allows for custom node types, edge routing, and interactive controls, making it perfect for visualizing complex infrastructure architectures in an accessible, intuitive way.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=5cm]{images/reactflow_logo.png}
-%     \caption{ReactFlow Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{images/reactflow.png}
+    \caption{ReactFlow Logo}
+\end{figure}
 
 \subsection{Recharts}
 \textbf{Recharts} is a composable charting library built on React components. It provides a simple, declarative approach to creating responsive charts and data visualizations. In the Infrastructure Command Center, Recharts powers the MLOps monitoring dashboard, displaying model performance metrics, accuracy trends, and prediction quality across multiple timeframes. Its component-based design integrates seamlessly with React's architecture, ensuring consistent styling and behavior across the application.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=5cm]{images/recharts_logo.png}
-%     \caption{Recharts Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{images/recharts.png}
+    \caption{Recharts Logo}
+\end{figure}
 
 \subsection{Material Dashboard}
 \textbf{Material Dashboard} provides a comprehensive UI framework based on Material Design principles. It offers pre-built components, layouts, and styling that ensure a professional, consistent user experience throughout the application. The framework accelerates development by providing ready-to-use interface elements while maintaining flexibility for customization.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=5cm]{images/material_ui_logo.png}
-%     \caption{Material Dashboard Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{images/material.png}
+    \caption{Material Dashboard Logo}
+\end{figure}
 
 \subsection{Conclusion on Frontend Technology Choices}
 The technologies selected for the \textbf{Infrastructure Command Center} frontend were carefully chosen to ensure native integration, optimal performance, and long-term maintainability. Each component contributes to a seamless development experience, combining usability, efficiency, and scalability. The combination of React, ReactFlow, Recharts, and Material Dashboard constitutes a coherent and powerful stack that meets both the functional and technical requirements of the project.
@@ -80,29 +80,29 @@ The backend constitutes the core orchestration layer of the Infrastructure Comma
 \subsection{Python}
 \textbf{Python} is a flexible and robust language with a rich ecosystem of libraries for API integration, data processing, and system automation. Its use in the Infrastructure Command Center backend enables powerful tools for orchestrating GitLab API calls, processing Prometheus metrics, and managing complex data transformations. Python's readability and extensive community support make it ideal for building maintainable, scalable backend services.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=5cm]{images/python_logo.png}
-%     \caption{Python Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{images/Python.png}
+    \caption{Python Logo}
+\end{figure}
 
 \subsection{FastAPI}
 \textbf{FastAPI} is a modern, high-performance web framework perfectly suited for building APIs and microservices. It offers concise syntax, automatic data validation through Pydantic models, and native support for asynchronous operations. FastAPI's performance characteristics and developer-friendly design make it ideal for handling multiple concurrent requests from the frontend while maintaining fast response times, even when orchestrating calls to external services like GitLab API and Prometheus.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=6cm]{images/fastapi_logo.png}
-%     \caption{FastAPI Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm]{images/FastAPI_logo.png}
+    \caption{FastAPI Logo}
+\end{figure}
 
 \subsection{Pydantic}
 \textbf{Pydantic} provides data validation and settings management using Python type annotations. It ensures that data flowing through the backend is correctly structured and validated, preventing errors and improving code reliability. Pydantic's integration with FastAPI enables automatic request/response validation and clear API documentation, enhancing both development speed and application robustness.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=5cm]{images/pydantic_logo.png}
-%     \caption{Pydantic Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{images/pydantic.png}
+    \caption{Pydantic Logo}
+\end{figure}
 
 \subsection{Conclusion on Backend Technology Choices}
 The technologies selected for the \textbf{Infrastructure Command Center} backend were chosen to ensure performance, robustness, and maintainability. The combination of Python, FastAPI, and Pydantic constitutes a coherent infrastructure capable of efficiently managing API orchestration, data processing, and validation, while providing a solid foundation for future platform evolution.
@@ -115,29 +115,29 @@ The deployment and operational infrastructure of the Infrastructure Command Cent
 \subsection{Docker}
 \textbf{Docker} provides containerization technology that packages the application and its dependencies into portable, consistent units. Containers ensure that the Infrastructure Command Center runs identically across development, testing, and production environments, eliminating configuration inconsistencies and deployment issues. Docker's lightweight architecture and efficient resource usage make it ideal for cloud-native applications.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=5cm]{images/docker_logo.png}
-%     \caption{Docker Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{images/Docker.png}
+    \caption{Docker Logo}
+\end{figure}
 
 \subsection{Kubernetes}
 \textbf{Kubernetes} orchestrates containerized applications at scale, managing deployment, scaling, and operation of application containers across clusters of hosts. It provides automated rollouts and rollbacks, self-healing capabilities, and load balancing. For the Infrastructure Command Center, Kubernetes ensures high availability, efficient resource utilization, and simplified management of the application lifecycle in production environments.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=6cm]{images/kubernetes_logo.png}
-%     \caption{Kubernetes Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm]{images/Kubernetes.png}
+    \caption{Kubernetes Logo}
+\end{figure}
 
 \subsection{GitLab CI/CD}
 \textbf{GitLab} provides integrated continuous integration and continuous deployment capabilities. Its CI/CD pipelines automate testing, building, and deployment processes, ensuring that code changes are automatically validated and deployed to production environments. GitLab's unified platform combines version control, issue tracking, and deployment automation, streamlining the entire development workflow.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=5cm]{images/gitlab_logo.png}
-%     \caption{GitLab Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{images/Gitlab.png}
+    \caption{GitLab Logo}
+\end{figure}
 
 \subsection{Conclusion on Infrastructure Technology Choices}
 The technologies selected for the \textbf{Infrastructure Command Center} deployment infrastructure ensure automated, reliable, and scalable operations. The combination of Docker, Kubernetes, and GitLab CI/CD provides a complete DevOps ecosystem that supports rapid iteration, consistent deployments, and robust production operations.
@@ -159,11 +159,11 @@ The Infrastructure Command Center's value lies in its ability to integrate multi
 \subsection{Prometheus}
 \textbf{Prometheus} is an open-source monitoring and alerting system designed for reliability and scalability. It collects time-series metrics from configured targets, stores them efficiently, and provides a powerful query language for data analysis. The Infrastructure Command Center integrates with Prometheus to retrieve system metrics, application performance data, and infrastructure health indicators, presenting them in accessible visualizations that enable quick identification of issues and trends.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=5cm]{images/prometheus_logo.png}
-%     \caption{Prometheus Logo}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{images/prometheus.png}
+    \caption{Prometheus Logo}
+\end{figure}
 
 \subsection{Conclusion on Integration Technology Choices}
 The integration technologies selected for the \textbf{Infrastructure Command Center} enable seamless connectivity with external systems and data sources. GitLab API v4 and Prometheus provide the foundation for consolidating repository management, deployment control, and system monitoring into a single, cohesive platform that delivers comprehensive infrastructure visibility.
@@ -185,12 +185,12 @@ The logical architecture of the \textbf{Infrastructure Command Center} illustrat
 
 This logical architecture ensures clear separation of responsibilities while enabling fast, efficient communication between components. Each stage from API orchestration to data visualization is optimized to provide a smooth user experience without compromising security or data consistency.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{images/logical_architecture.png}
-%     \caption{Logical Architecture Diagram of Infrastructure Command Center}
-%     \label{fig:logical_architecture}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/logical_archi.pdf}
+    \caption{Logical Architecture Diagram of Infrastructure Command Center}
+    \label{fig:logical_architecture}
+\end{figure}
 
 \subsection{Physical Architecture}
 
@@ -206,12 +206,12 @@ The physical architecture describes the concrete deployment of components and ho
 
 Data flows between layers are secured through HTTPS, with authentication tokens managing access to external services. This physical architecture enables reliable, scalable operations while maintaining security and performance standards.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{images/physical_architecture.png}
-%     \caption{Physical Architecture Diagram of Infrastructure Command Center}
-%     \label{fig:physical_architecture}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/physical_archi.pdf}
+    \caption{Physical Architecture Diagram of Infrastructure Command Center}
+    \label{fig:physical_architecture}
+\end{figure}
 
 \subsection{Conclusion on Architectures}
 

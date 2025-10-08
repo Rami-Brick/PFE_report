@@ -1,0 +1,27 @@
+\chapter*{General Introduction}
+\addcontentsline{toc}{chapter}{General Introduction}
+
+Modern infrastructure management is characterized by increasing complexity and the growing challenge of maintaining visibility across distributed systems. In AI-driven trading environments like FinGenesis, where milliseconds matter and system reliability is critical, engineers must monitor dozens of services, manage continuous deployments, and track machine learning model performance in real-time. However, the tools available for these tasks are often fragmented across multiple platforms—monitoring dashboards, version control interfaces, cloud consoles, and manual communication channels—creating operational friction that slows response times and reduces productivity.
+
+In this context, centralized infrastructure management plays an essential role: it enables engineers to understand system health quickly, simplifies deployment operations, and reduces the risk of errors caused by context switching between tools. Yet in many organizations, infrastructure management remains scattered across disconnected platforms, resulting in time-consuming workflows, limited visibility, and scalability challenges as systems grow.
+
+Addressing this challenge, this final-year internship project proposes the design and implementation of the Infrastructure Command Center, a unified web application for FinGenesis. The objective is to transform fragmented infrastructure operations into a centralized, accessible platform by consolidating monitoring, deployment control, and ML model performance tracking into a single interface. This tool aims to significantly reduce the time required to understand system state, execute routine operations, and identify performance issues, while improving collaboration across technical and non-technical stakeholders.
+
+The project is built on a modern full-stack architecture: a React frontend using ReactFlow for workflow visualization and Recharts for metrics display, and a Python backend with FastAPI that orchestrates API calls to GitLab and Prometheus while implementing intelligent caching for optimal performance. This separation ensures modularity and scalability. The architecture is described through two complementary dimensions: logical architecture (component organization and data flows) and physical architecture (deployment infrastructure and service communication).
+
+Development followed an Agile methodology structured into nine two-week sprints. Each sprint enabled incremental progress: project initialization and environment setup, backend API development and GitLab integration, frontend component implementation, workflow visualization with React Flow, Control Panel features with repository management, ML metrics monitoring dashboard, performance optimization through async operations and caching, and finally deployment automation with Docker and Kubernetes.
+
+This project was conducted in a stimulating professional environment at FinGenesis, a recognized player in AI-driven algorithmic trading. This context enabled the combination of academic rigor with industrial requirements, developing an innovative solution that addresses real operational needs for infrastructure engineers and data scientists.
+
+The structure of this report is organized as follows:
+
+\begin{itemize}
+    \item \textbf{Chapter 1} presents the project framework, introducing the problem statement, organizational context, and project objectives.
+    \item \textbf{Chapter 2} explores the state of the art, examining the technological choices and architectural foundations of the solution.
+    \item \textbf{Chapter 3} defines the functional and non-functional requirements identified through analysis of operational needs.
+    \item \textbf{Chapter 4} presents an in-depth analysis of the solution layers, examining backend and frontend architectural decisions.
+    \item \textbf{Chapter 5} describes the practical implementation, including the work environment, feature delivery, and technical challenges overcome.
+    \item \textbf{Conclusion and Perspectives} summarizes the project achievements and proposes future enhancements for the platform.
+\end{itemize}
+
+Through this work, we aim to demonstrate that combining modern web technologies, performance optimization techniques, and user-centered design can significantly improve how engineers interact with complex infrastructure systems, transforming manual, fragmented workflows into streamlined, centralized operations.
