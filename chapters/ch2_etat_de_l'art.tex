@@ -3,14 +3,14 @@
 \section{Introduction}
 The rapid evolution of cloud infrastructure and the growing complexity of distributed systems have fundamentally transformed how engineering teams manage and monitor their applications.
 
-In this chapter, we present the technological context of the Infrastructure Command Center, detailing the technical choices that support its functionality and presenting the logical and physical architectures that ensure its efficiency, speed, and reliability. We will demonstrate how each component—from the React frontend to the FastAPI backend and deployment infrastructure—cooperates to deliver a unified, accessible platform for infrastructure management.
+In this chapter, we present the technological context of the Infrastructure Command Center, detailing the technical choices that support its functionality and presenting the logical and physical architectures that ensure its efficiency, speed, and reliability. We will demonstrate how each component from the React frontend to the FastAPI backend and deployment infrastructure cooperates to deliver a unified, accessible platform for infrastructure management.
 
 \section{Centralized Infrastructure Management}
 
 \subsection{The Evolution of Infrastructure Management}
 Historically, infrastructure management relied on disparate tools and manual processes, often resulting in fragmented visibility and operational inefficiencies. This approach presented numerous drawbacks: inconsistent monitoring, information silos, time-consuming manual operations, and difficulty coordinating across teams. The emergence of cloud-native architectures and modern DevOps practices has fundamentally transformed this process. Centralized infrastructure management now enables teams to consolidate monitoring, deployment control, and operational workflows into unified platforms.
 
-In practice, modern infrastructure management platforms integrate multiple data sources—system metrics, deployment pipelines, application health, and performance indicators—into cohesive dashboards. This integration allows teams to understand not just individual components, but the entire system's health and behavior. Centralization goes beyond simple data aggregation: it includes workflow automation, intelligent alerting, and visual representations that make complex infrastructure accessible to both technical and non-technical stakeholders.
+In practice, modern infrastructure management platforms integrate multiple data sources system metrics, deployment pipelines, application health, and performance indicators into cohesive dashboards. This integration allows teams to understand not just individual components, but the entire system's health and behavior. Centralization goes beyond simple data aggregation: it includes workflow automation, intelligent alerting, and visual representations that make complex infrastructure accessible to both technical and non-technical stakeholders.
 
 \subsection{Benefits of Centralization}
 Centralized infrastructure management delivers multiple advantages for engineering teams and organizations. First, it significantly reduces time spent on repetitive tasks and context switching, allowing engineers to focus on high-value activities like optimization, new feature development, and proactive problem-solving.
@@ -24,7 +24,7 @@ The Infrastructure Command Center distinguishes itself through its ability to in
 
 Technically, the Infrastructure Command Center relies on a robust backend using Python and FastAPI to orchestrate API calls, manage data processing, and deliver fast, reliable responses. The frontend, built with React, ReactFlow, and Recharts, provides an intuitive, responsive interface perfectly suited to the needs of modern engineering teams.
 
-The platform's core strength lies in its ability to bridge multiple systems—GitLab repositories, Prometheus monitoring, AWS infrastructure, and MLOps metrics—through a unified interface. This approach ensures speed, accessibility, and comprehensive visibility without requiring users to navigate multiple tools or maintain separate access credentials.
+The platform's core strength lies in its ability to bridge multiple systems GitLab repositories, Prometheus monitoring, AWS infrastructure, and MLOps metrics through a unified interface. This approach ensures speed, accessibility, and comprehensive visibility without requiring users to navigate multiple tools or maintain separate access credentials.
 
 Thus, the Infrastructure Command Center does not simply display data: it transforms fragmented infrastructure information into a cohesive, actionable resource that respects professional standards and addresses the specific needs of modern engineering organizations. Its position in the ecosystem is unique, offering simultaneous performance, security, accessibility, and comprehensive integration, establishing a new standard for centralized infrastructure management.
 \clearpage
@@ -183,7 +183,7 @@ The logical architecture of the \textbf{Infrastructure Command Center} illustrat
 
 \textbf{External Services}: The platform integrates with multiple external systems. GitLab API v4 provides repository data, pipeline status, and deployment controls. Prometheus delivers system metrics and performance data. These services respond to backend requests and return data that is processed and forwarded to the frontend.
 
-This logical architecture ensures clear separation of responsibilities while enabling fast, efficient communication between components. Each stage—from API orchestration to data visualization—is optimized to provide a smooth user experience without compromising security or data consistency.
+This logical architecture ensures clear separation of responsibilities while enabling fast, efficient communication between components. Each stage from API orchestration to data visualization is optimized to provide a smooth user experience without compromising security or data consistency.
 
 % \begin{figure}[H]
 %     \centering
@@ -219,4 +219,4 @@ The logical and physical architectures of the \textbf{Infrastructure Command Cen
 \clearpage
 
 \section{Conclusion}
-This chapter presented the technical foundations of the Infrastructure Command Center. The technology choices—both frontend and backend—ensure a balance between performance, reliability, and maintainability, providing a robust and scalable environment. The architectural design demonstrates how components work together to deliver a unified infrastructure management platform. The next chapter will focus on requirements specification, detailing the functional and non-functional needs that guide the system's development.
+This chapter presented the technical foundations of the Infrastructure Command Center. The technology choices both frontend and backend ensure a balance between performance, reliability, and maintainability, providing a robust and scalable environment. The architectural design demonstrates how components work together to deliver a unified infrastructure management platform. The next chapter will focus on requirements specification, detailing the functional and non-functional needs that guide the system's development.

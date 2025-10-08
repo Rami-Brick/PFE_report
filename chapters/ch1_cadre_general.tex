@@ -18,7 +18,7 @@ Finally, the chapter outlines the methodology adopted to structure our approach,
     \label{fig:fingenesis_logo}
 \end{figure}
 
-FinGenesis distinguishes itself through a research-intensive approach to market prediction. Unlike traditional statistical models that rely on rigid algorithms, the company develops AI systems that learn from market patterns and adapt to changing conditions. Their technology stack includes deep learning architectures, reinforcement learning, convolutional networks, and transformer models—similar in sophistication to large language models like ChatGPT, but specifically designed for financial time-series analysis.
+FinGenesis distinguishes itself through a research-intensive approach to market prediction. Unlike traditional statistical models that rely on rigid algorithms, the company develops AI systems that learn from market patterns and adapt to changing conditions. Their technology stack includes deep learning architectures, reinforcement learning, convolutional networks, and transformer models similar in sophistication to large language models like ChatGPT, but specifically designed for financial time-series analysis.
 
 \subsection*{Core Product Offerings}
 
@@ -34,7 +34,7 @@ FinGenesis organizes its AI capabilities into distinct product lines:
 
 \subsection*{Technology and Approach}
 
-The company's AI infrastructure processes real-time market data across multiple instruments, with particular focus on XAUUSD (Gold/USD). Models operate across various timeframes—from 1-minute to 15-minute intervals—with prediction horizons ranging from 30 minutes to several hours.
+The company's AI infrastructure processes real-time market data across multiple instruments, with particular focus on XAUUSD (Gold/USD). Models operate across various timeframes from 1-minute to 15-minute intervals with prediction horizons ranging from 30 minutes to several hours.
 
 FinGenesis emphasizes an "AI + human" philosophy: their systems assist traders rather than fully automating decisions. This approach combines machine intelligence with human expertise, allowing traders to leverage AI insights while maintaining strategic control.
 
@@ -59,7 +59,7 @@ FinGenesis operates a cloud-native infrastructure on AWS, utilizing:
 
 The company maintains a lean team of approximately 10 specialists, including data scientists, machine learning engineers, and DevOps professionals. This structure enables rapid iteration and maintains the flexibility required in dynamic financial markets.
 
-With 15+ production models deployed and continuously monitored, FinGenesis combines technical sophistication with practical trading applications. The company's mission is clear: use real intelligence—not just algorithms—to optimize trading decisions and deliver reliable market predictions.
+With 15+ production models deployed and continuously monitored, FinGenesis combines technical sophistication with practical trading applications. The company's mission is clear: use real intelligence not just algorithms to optimize trading decisions and deliver reliable market predictions.
 \newpage
 \section{Problem Statement}
 
@@ -69,11 +69,11 @@ The primary problems identified were:
 
 \textbf{Lack of Centralization}: Infrastructure monitoring and control tools were scattered across multiple platforms. Engineers had to navigate between Grafana for system metrics, GitLab for repository and pipeline management, AWS Console for cloud resources, and manual communication channels for coordination. This fragmentation created information silos and prevented a holistic view of system health.
 
-\textbf{Manual and Time-Consuming Processes}: Routine infrastructure operations required repetitive manual steps. Checking deployment status, triggering CI/CD pipelines, and verifying model performance metrics all involved context switching and sequential actions across different tools. These manual processes increased workload, reduced productivity, and introduced the risk of human error—particularly critical in time-sensitive trading operations where delays can have financial consequences.
+\textbf{Manual and Time-Consuming Processes}: Routine infrastructure operations required repetitive manual steps. Checking deployment status, triggering CI/CD pipelines, and verifying model performance metrics all involved context switching and sequential actions across different tools. These manual processes increased workload, reduced productivity, and introduced the risk of human error particularly critical in time-sensitive trading operations where delays can have financial consequences.
 
-\textbf{Limited Visibility and Collaboration}: Internal engineering staff, stakeholders, and potential clients lacked a unified interface for accessing infrastructure data. Data scientists needed quick insights into model performance, DevOps engineers required deployment status information, and management needed high-level system health overviews—but each had to piece together information from disparate sources. This limited transparency hindered collaboration and slowed decision-making.
+\textbf{Limited Visibility and Collaboration}: Internal engineering staff, stakeholders, and potential clients lacked a unified interface for accessing infrastructure data. Data scientists needed quick insights into model performance, DevOps engineers required deployment status information, and management needed high-level system health overviews but each had to piece together information from disparate sources. This limited transparency hindered collaboration and slowed decision-making.
 
-\textbf{Scalability Challenges}: As FinGenesis's infrastructure grew—adding more repositories, deploying additional models, and expanding monitoring requirements—the complexity of managing multiple disconnected systems increased exponentially. The existing approach did not scale effectively, and response times degraded as the number of managed components grew (evidenced by GitLab data loading taking over 60 seconds for 40+ repositories).
+\textbf{Scalability Challenges}: As FinGenesis's infrastructure grew adding more repositories, deploying additional models, and expanding monitoring requirements the complexity of managing multiple disconnected systems increased exponentially. The existing approach did not scale effectively, and response times degraded as the number of managed components grew (evidenced by GitLab data loading taking over 60 seconds for 40+ repositories).
 
 The \textbf{Infrastructure Command Center} was designed to address all these challenges by providing a unified, performance-optimized platform that centralizes infrastructure management, automates routine operations, and delivers actionable insights across monitoring, deployment, and MLOps domains.
 
@@ -87,7 +87,7 @@ Before the implementation of the Infrastructure Command Center project, \textit{
 \begin{itemize}
     \item \textbf{Fragmented monitoring systems} : Existing tools like Grafana and AWS Console only provided visibility into specific aspects of the infrastructure. System metrics were isolated from deployment status, requiring engineers to manually correlate information across multiple platforms. This gap resulted in incomplete understanding of overall system health, complicated troubleshooting, and increased the time needed to diagnose and resolve issues.
     
-    \item \textbf{Manual and labor-intensive deployment management} : Each infrastructure operation whether deploying a new version, restarting a service, or merging code changes—required manual intervention through the GitLab web interface. This procedure was not only time-consuming but also prone to human error, such as triggering the wrong pipeline or missing critical deployment steps. Consequently, deployment processes became bottlenecks, losing reliability and slowing down release cycles.
+    \item \textbf{Manual and labor-intensive deployment management} : Each infrastructure operation whether deploying a new version, restarting a service, or merging code changes required manual intervention through the GitLab web interface. This procedure was not only time-consuming but also prone to human error, such as triggering the wrong pipeline or missing critical deployment steps. Consequently, deployment processes became bottlenecks, losing reliability and slowing down release cycles.
     
     \item \textbf{Insufficient integration and accessibility} : To access infrastructure information or perform management tasks, team members often had to navigate between multiple platforms, each requiring specific permissions and technical knowledge. This disconnect between different tools fragmented the workflow and limited access to critical information. The direct consequence was reduced productivity and increased dependency on specific engineers with the necessary expertise and credentials.
 \end{itemize}
@@ -98,7 +98,7 @@ Before the implementation of the Infrastructure Command Center project, \textit{
 In-depth examination of the methods in place revealed several structural deficiencies that hindered operational efficiency and overall infrastructure quality:
 
 \begin{itemize}
-    \item \textbf{Limited visibility and transparency} : In the current context, critical infrastructure information such as deployment status, pipeline health, or model performance metrics—was scattered across disconnected platforms. The absence of a unified dashboard prevented stakeholders from obtaining a comprehensive overview, increasing the risk of delayed incident response and uninformed decision-making.
+    \item \textbf{Limited visibility and transparency} : In the current context, critical infrastructure information such as deployment status, pipeline health, or model performance metrics was scattered across disconnected platforms. The absence of a unified dashboard prevented stakeholders from obtaining a comprehensive overview, increasing the risk of delayed incident response and uninformed decision-making.
     
     \item \textbf{Scalability issues and performance degradation} : Due to the reliance on multiple separate tools and manual processes, managing infrastructure became increasingly complex as FinGenesis grew. When operations were performed across 40+ repositories, response times degraded significantly (GitLab data loading exceeded 60 seconds). These incidents forced teams to spend valuable time waiting for information or repeating tasks, considerably slowing operational cycles.
     
@@ -119,7 +119,7 @@ The solution delivers three primary functional areas:
 
 \textbf{Visual Workflow Representation}: The platform provides an interactive visualization of FinGenesis's infrastructure workflows, showing how services connect and interact. This visual approach replaces abstract documentation with clear, real-time diagrams that help both technical and non-technical users understand system architecture at a glance.
 
-\textbf{Repository and Deployment Management}: All GitLab repositories are accessible through a centralized control panel with advanced filtering, search, and sorting capabilities. Common operations—such as triggering deployments, restarting services, managing merge requests, and monitoring pipeline status—can be executed directly from the interface without switching contexts or requiring direct GitLab access.
+\textbf{Repository and Deployment Management}: All GitLab repositories are accessible through a centralized control panel with advanced filtering, search, and sorting capabilities. Common operations such as triggering deployments, restarting services, managing merge requests, and monitoring pipeline status can be executed directly from the interface without switching contexts or requiring direct GitLab access.
 
 \textbf{MLOps Monitoring and Model Performance Tracking}: The platform integrates real-time model performance metrics, displaying accuracy trends, prediction quality, and drift detection across multiple timeframes and prediction horizons. This gives data scientists and engineers immediate visibility into model health without needing to query separate monitoring systems.
 
@@ -127,7 +127,7 @@ The solution delivers three primary functional areas:
 
 The Infrastructure Command Center was designed with two key principles:
 
-\textbf{Simplicity for all users}: The interface is intuitive enough for non-technical stakeholders—such as management or clients—to understand system status and access relevant information without requiring specialized training or deep technical knowledge.
+\textbf{Simplicity for all users}: The interface is intuitive enough for non-technical stakeholders such as management or clients to understand system status and access relevant information without requiring specialized training or deep technical knowledge.
 
 \textbf{Power for technical users}: Despite its accessible design, the platform provides engineers with comprehensive control over infrastructure operations, enabling them to perform complex tasks efficiently through streamlined workflows and automation.
 
@@ -138,7 +138,7 @@ The proposed solution aims to deliver measurable improvements across several ope
 \begin{itemize}
     \item \textbf{Reduced manual overhead}: Automation of routine tasks eliminates repetitive manual steps, freeing engineers to focus on higher-value work.
     
-    \item \textbf{Improved collaboration}: A unified platform ensures all team members—regardless of technical background—have access to the same information, facilitating better communication and decision-making.
+    \item \textbf{Improved collaboration}: A unified platform ensures all team members regardless of technical background have access to the same information, facilitating better communication and decision-making.
     
     \item \textbf{Decreased dependency on specialized staff}: By centralizing and simplifying infrastructure operations, the platform reduces bottlenecks caused by reliance on specific individuals with unique access or expertise.
     
