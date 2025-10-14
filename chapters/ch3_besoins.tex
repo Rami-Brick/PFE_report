@@ -144,29 +144,178 @@ The codebase must be organized to facilitate future development and bug fixes.
 \clearpage
 
 \section{Use Case Identification and Structuring}
-Use cases provide a concrete representation of user interactions with \textit{Infra App}, identifying primary actors, their responsibilities, and the operational scenarios they engage in. This analysis illuminates the system’s functional landscape, supporting both design decisions and workflow optimization.
+Use cases provide a concrete representation of user interactions with \textit{Infra App}, identifying primary actors, their relationships, and the operational scenarios they engage in. This analysis illuminates the system's functional landscape, supporting both design decisions and workflow optimization through proper inheritance and modular design patterns.
 
-\textbf{Engineers} can:
+\textbf{Stakeholders (Investors/Clients)} can:
 \begin{itemize}
-    \item Visualize infrastructure in real-time through dynamic, interactive workflows.
-    \item Execute deployments and restart services via the centralized control panel.
-    \item Monitor machine learning model performance and respond to alerts proactively.
+    \item View visual workflows to understand system operations, which includes monitoring service status in real-time.
+    \item Access MLOps metrics dashboards to track model performance, which includes comprehensive model performance monitoring capabilities.
 \end{itemize}
 
-\textbf{Project Managers} can:
+\textbf{Engineers} inherit all Stakeholder capabilities and additionally can:
 \begin{itemize}
-    \item Oversee system health and operational performance.
-    \item Track deployment progress and ensure seamless release management.
-    \item Leverage dashboards and analytics to make informed strategic decisions.
+    \item Manage the GitLab Control Panel, which encompasses:
+    \begin{itemize}
+        \item Searching repositories across organizational GitLab groups.
+        \item Managing CI/CD pipelines for automated deployment workflows.
+        \item Managing merge requests (creation, acceptance, and rejection).
+        \item Triggering manual jobs for on-demand pipeline execution.
+    \end{itemize}
 \end{itemize}
 
-\begin{figure}[h!]
+\textbf{External System Integration:}
+\begin{itemize}
+    \item \textbf{GitLab API:} Provides programmatic access to repository management, pipeline control, and merge request operations.
+    \item \textbf{Monitoring Systems:} Supply real-time service status data and model performance metrics for operational visibility.
+\end{itemize}
+
+This use case structure demonstrates role-based access control through actor generalization, where Engineers inherit read-only monitoring capabilities from Stakeholders while possessing exclusive administrative privileges for GitLab operations. The \texttt{<<include>>} relationships establish mandatory dependencies between composite operations and their constituent tasks, ensuring modular design and clear functional boundaries.
+
+\begin{sidewaysfigure}
     \centering
-    % Placeholder for the use case diagram
-    \fbox{\rule{0pt}{6cm}\rule{0.9\textwidth}{0pt}}
-    \caption{Global Use Case Diagram of Infra App}
-\end{figure}
+    \includegraphics[width=1\textwidth]{images/usecase.png}
+    \caption{Infra App Use Case Diagram}
+    \label{fig:use_case}
+\end{sidewaysfigure}
 \clearpage
+
+\subsection{System Interaction Flows}
+
+This section presents the operational workflows and data flows within the Infrastructure Command Center through two complementary diagrams. These visualizations demonstrate how users interact with the system and how the platform orchestrates communication between components to fulfill requests efficiently.
+
+\subsubsection{Deployment Workflow}
+
+Figure 3.2 illustrates the complete deployment workflow, showing the step-by-step process an engineer follows when deploying services through the Control Panel.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/activity.png}
+    \caption{Deployment Workflow - From Repository Access to Deployment Success}
+    \label{fig:deployment_workflow}
+\end{figure}
+
+\clearpage
+\textbf{Workflow Steps:}
+
+\begin{enumerate}
+    \item \textbf{Access Control Panel}: The engineer initiates the workflow by accessing the GitLab Control Panel interface.
+    
+    \item \textbf{Request Repositories List}: The system requests the complete list of repositories and their current pipeline statuses from the backend.
+    
+    \item \textbf{Fetch Repository and Pipeline Data}: The backend retrieves repository information and associated pipeline data through the GitLab API.
+    
+    \item \textbf{Display Repositories with Actions}: The Control Panel displays all repositories with their current status, branch information, and available actions based on their state.
+    
+    \item \textbf{View Repository List}: The engineer reviews the displayed repositories to identify the target service for deployment.
+    
+    \item \textbf{Main Branch Decision Point}: The system evaluates whether the repository is on the main branch:
+    \begin{itemize}
+        \item \textbf{If No}: The workflow ends, as deployment actions are only available for main branch repositories.
+        \item \textbf{If Yes}: The workflow proceeds to check for available deployment jobs.
+    \end{itemize}
+    
+    \item \textbf{Manual Job Availability Check}: The system determines whether manual deployment jobs are available for the repository:
+    \begin{itemize}
+        \item \textbf{If Already Deployed}: The system displays "Already Deployed" status, indicating no action is needed.
+        \item \textbf{If Manual Job Available}: The system displays the "Deploy" button, enabling the engineer to trigger deployment.
+    \end{itemize}
+    
+    \item \textbf{Click Deploy Button}: The engineer initiates deployment by clicking the Deploy button.
+    
+    \item \textbf{Request Manual Jobs List}: The backend queries the GitLab API to retrieve the list of manual jobs associated with the repository's pipeline.
+    
+    \item \textbf{Query Manual Jobs}: The GitLab API returns available manual jobs that can be triggered.
+    
+    \item \textbf{Select Deploy Job}: The system identifies the appropriate deployment job from the manual jobs list.
+    
+    \item \textbf{Trigger Selected Job}: The backend sends a request to the GitLab API to execute the selected deployment job.
+    
+    \item \textbf{Execute Deployment Job}: The GitLab API initiates the deployment pipeline, beginning the deployment process.
+    
+    \item \textbf{Deployment Started}: The GitLab API confirms that the deployment job has been successfully triggered.
+    
+    \item \textbf{Success Notification}: The engineer receives a success notification in the Control Panel, confirming that deployment has been initiated.
+    
+    \item \textbf{End}: The workflow completes successfully with the deployment in progress.
+\end{enumerate}
+
+This workflow demonstrates the intelligent decision-making embedded in the Control Panel, which automatically determines available actions based on repository state (branch, pipeline status, existing deployments) and guides engineers through the deployment process with minimal manual steps.
+
+\subsubsection{Repository Data Retrieval and Deployment Sequence}
+
+Figure 3.3 presents a detailed sequence diagram showing the interactions between system components during repository data retrieval and deployment operations, highlighting the caching strategy and parallel API calls.
+
+\begin{sidewaysfigure}
+    \centering
+    \includegraphics[width=\textwidth]{images/sequence.png}
+    \caption{Sequence Diagram - Repository Retrieval and Deployment Flow}
+    \label{fig:deployment_sequence}
+\end{sidewaysfigure}
+
+\textbf{Phase 1: Repository Data Retrieval (Steps 1-13)}
+
+\begin{enumerate}
+    \item \textbf{View Repositories Request}: The engineer initiates repository viewing by accessing the Control Panel interface.
+    
+    \item \textbf{GET /gitlab/data}: The frontend sends an HTTP GET request to the backend to retrieve repository data.
+    
+    \item \textbf{Check Cache}: The backend checks if repository data exists in the cache (populated by the background refresh task that runs every 10 seconds).
+    
+    \item \textbf{Cache Miss}: If the cache is empty or outdated, the system proceeds to fetch fresh data from external services.
+    
+    \item \textbf{Fetch Repos}: The backend initiates a request to the GitLab Service to retrieve repository information.
+    
+    \item \textbf{GET /projects}: The GitLab Service sends a request to the GitLab API to retrieve all accessible projects within the configured groups.
+    
+    \item \textbf{Repo Data}: The GitLab API returns the list of projects with their basic information (name, ID, description, last activity).
+    
+    \item \textbf{GET /pipelines}: In parallel with project retrieval, the GitLab Service requests pipeline status information for each repository.
+    
+    \item \textbf{Pipeline Data}: The GitLab API returns pipeline information (status, branch, stage, job details) for each project.
+    
+    \item \textbf{Formatted Data}: The backend processes and formats the combined repository and pipeline data into a unified structure suitable for frontend consumption.
+    
+    \item \textbf{Store in Cache}: The formatted data is stored in the cache, ensuring subsequent requests receive instant responses without additional API calls.
+    
+    \item \textbf{JSON Response}: The backend returns the complete repository data to the frontend as a JSON response.
+    
+    \item \textbf{Display Repos}: The frontend renders the repository list in the Control Panel, showing all available information and actionable buttons.
+\end{enumerate}
+
+\textbf{Phase 2: Deployment Triggering (Steps 14-22)}
+
+\begin{enumerate}
+    \setcounter{enumi}{13}
+    \item \textbf{Click "Deploy"}: The engineer clicks the Deploy button for a repository on the main branch with passed pipelines.
+    
+    \item \textbf{POST /gitlab/trigger}: The frontend sends a POST request to the backend to initiate the deployment process.
+    
+    \item \textbf{Get Manual Jobs}: The backend requests the list of manual jobs available for the selected repository's latest pipeline.
+    
+    \item \textbf{GET /jobs?scope=manual}: The GitLab Service queries the GitLab API specifically for jobs with manual scope (jobs that require explicit triggering).
+    
+    \item \textbf{Manual Jobs List}: The GitLab API returns the list of manual jobs, typically including deployment jobs that must be triggered explicitly.
+    
+    \item \textbf{POST /jobs/:id/play}: The backend identifies the deployment job from the manual jobs list and sends a request to execute it by ID.
+    
+    \item \textbf{Success}: The GitLab API confirms successful job execution, indicating the deployment pipeline has started.
+    
+    \item \textbf{Deployment Started}: The backend returns a success response to the frontend, confirming deployment initiation.
+    
+    \item \textbf{Success Message}: The frontend displays a success notification to the engineer, and the repository status updates to reflect the ongoing deployment.
+\end{enumerate}
+
+\textbf{Key Architectural Patterns Demonstrated:}
+
+\begin{itemize}
+    \item \textbf{Caching Strategy}: The system checks cache before making external API calls, dramatically reducing response times (from seconds to milliseconds) and minimizing load on GitLab's API.
+    \item \textbf{Parallel API Calls}: Repository and pipeline data are fetched simultaneously rather than sequentially, reducing total retrieval time by approximately 50\%.
+    \item \textbf{Background Refresh}: The 10-second background task keeps cache fresh, ensuring users always see recent data without waiting for API calls.
+    \item \textbf{Separation of Concerns}: The GitLab Service abstracts API communication, allowing the backend to focus on business logic and caching while the service handles external integration details.
+    \item \textbf{Asynchronous Processing}: All external API calls use async/await patterns, preventing interface freezing and enabling concurrent operations.
+\end{itemize}
+
+These interaction flows demonstrate how the Infrastructure Command Center efficiently orchestrates complex operations while maintaining responsiveness and reliability through intelligent caching, parallel execution, and clear separation between system components.
 
 \section{Product Backlog}
 The product backlog serves as a structured repository of features, enhancements, and priorities for \textit{Infra App}. It provides a clear overview of functionalities to be implemented, helping the team focus on delivering value and ensuring that system capabilities align with user needs. Each entry specifies a feature, associated user story, and its relative priority to guide development and track progress.
@@ -174,17 +323,23 @@ The product backlog serves as a structured repository of features, enhancements,
 \begin{table}[h!]
 \centering
 \caption{Product Backlog – Infra App}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{>{\bfseries}c m{3.5cm} m{2cm} m{8cm} >{\centering\arraybackslash}m{1.5cm}}
-\toprule
-ID & Feature & Story ID & User Story & Priority \\ 
-\midrule
+\renewcommand{\arraystretch}{1.4} % Adjust row height
+\setlength{\arrayrulewidth}{0.5mm} % Make the lines thicker (optional)
+\setlength{\tabcolsep}{5pt} % Adjust column spacing (optional)
+\begin{tabular}{|>{\bfseries}c|m{3.5cm}|m{2cm}|m{8cm}|>{\centering\arraybackslash}m{1.5cm}|}
+\hline
+\textbf{ID} & \textbf{Feature} & \textbf{Story ID} & \textbf{User Story} & \textbf{Priority} \\ 
+\hline
 1 & Dynamic Visual Workflows & 1.1 & As an engineer, I want to view infrastructure components and their relationships visually to understand system dependencies. & High \\[1ex]
+\hline
 2 & Control Panel Integration & 2.1 & As an engineer, I want to deploy and restart services from one interface to save time and reduce manual effort. & High \\[1ex]
+\hline
 3 & ML Metrics Monitoring & 3.1 & As a data engineer, I want to track ML model performance and receive alerts on anomalies to maintain accuracy. & Medium \\[1ex]
+\hline
 4 & GitLab Repository Search & 4.1 & As a developer, I want to filter repositories quickly and access details within the same dashboard. & Medium \\[1ex]
+\hline
 5 & User Management \& Access Control & 5.1 & As an admin, I want to manage user roles and permissions to ensure secure access. & Medium \\ 
-\bottomrule
+\hline
 \end{tabular}
 \end{table}
 
