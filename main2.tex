@@ -1,0 +1,76 @@
+\documentclass[a4paper,12pt]{article} % Use an appropriate document class
+\usepackage[utf8]{inputenc} % For UTF-8 encoding
+\usepackage{graphicx} % For including graphics
+\usepackage{array} % For table formatting
+\usepackage{float} % For [H] option in tables
+\usepackage{geometry} % For page layout
+\usepackage{adjustbox}
+\geometry{margin=1in} % Adjust margins if needed
+\geometry{left=1cm, right=1.5cm, top=2.5cm, bottom=2.5cm}
+
+\begin{document}
+
+\begin{table}[h!]
+\centering
+\caption{Product Backlog – Infra App}
+\renewcommand{\arraystretch}{1.4} % Adjust row height
+\setlength{\arrayrulewidth}{0.5mm} % Make the lines thicker (optional)
+\setlength{\tabcolsep}{5pt} % Adjust column spacing (optional)
+\begin{tabular}{|>{\bfseries}c|m{3.5cm}|m{2cm}|m{8cm}|>{\centering\arraybackslash}m{1.5cm}|}
+\hline
+\textbf{ID} & \textbf{Feature} & \textbf{Story ID} & \textbf{User Story} & \textbf{Priority} \\ 
+\hline
+1 & Dynamic Visual Workflows & 1.1 & As an engineer, I want to view infrastructure components and their relationships visually to understand system dependencies. & High \\[1ex]
+\hline
+2 & Control Panel Integration & 2.1 & As an engineer, I want to deploy and restart services from one interface to save time and reduce manual effort. & High \\[1ex]
+\hline
+3 & ML Metrics Monitoring & 3.1 & As a data engineer, I want to track ML model performance and receive alerts on anomalies to maintain accuracy. & Medium \\[1ex]
+\hline
+4 & GitLab Repository Search & 4.1 & As a developer, I want to filter repositories quickly and access details within the same dashboard. & Medium \\[1ex]
+\hline
+5 & User Management \& Access Control & 5.1 & As an admin, I want to manage user roles and permissions to ensure secure access. & Medium \\ 
+\hline
+\end{tabular}
+\end{table}
+
+\hspace{-3cm}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.8} % Adjust row height
+\setlength{\arrayrulewidth}{0.3mm} % Make the lines thicker (optional)
+\setlength{\tabcolsep}{4pt} % Reduced column spacing
+\begin{tabular}{|>{\bfseries}m{2.3cm}|m{2cm}|m{3cm}|m{2.5cm}|m{2.5cm}|m{2cm}|m{2cm}|}
+\hline
+\textbf{Technology} & \textbf{Learning Curve} & \textbf{Component Ecosystem} & \textbf{Performance} & \textbf{Dashboard Templates} & \textbf{Real-time Updates} & \textbf{Enterprise Adoption} \\ 
+\hline
+React.js & Moderate & Extensive (Recharts, React Flow, MUI) & Good (Virtual DOM) & Many available & Excellent with hooks & Very High \\[1ex]
+\hline
+Vue.js & Easy & Good but smaller & Good & Some available & Good & Growing \\[1ex]
+\hline
+Angular & Steep & Good (comprehensive) & Good & Some available & Good & High \\[1ex]
+\hline
+Svelte & Easy & Limited & Excellent & Few available & Good & Low \\ 
+\hline
+\end{tabular}
+\caption{Frontend Framework Comparison}
+\end{table}
+
+\begin{table}[H]
+\centering
+\hspace{-1cm}  % Adjust this value as needed (-0.5cm, -1.5cm, etc.)
+\renewcommand{\arraystretch}{4} 
+\LARGE
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\textbf{Technology} & \textbf{Performance} & \textbf{Auto Documentation} & \textbf{Type Safety} & \textbf{Async Support} & \textbf{Learning Curve} & \textbf{Data Validation} \\ \hline
+FastAPI & Excellent (async) & Built-in (Swagger) & Pydantic validation & Native & Low & Automatic \\ \hline
+Flask & Moderate & Manual setup required & None (manual) & Add-on only & Low & Manual implementation \\ \hline
+Django & Moderate & Manual setup required & Limited (forms) & Limited & High & Forms-based \\ \hline
+Express.js & Excellent (async) & Manual setup required & Requires TypeScript & Native & Moderate & Manual implementation \\ \hline
+\end{tabular}
+}
+\caption{Backend Framework Comparison}
+\end{table}
+
+\end{document}
